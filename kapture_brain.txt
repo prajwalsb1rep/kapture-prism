@@ -1,0 +1,86 @@
+# Kapture CX - Complete Technical Knowledge Base
+
+[CATEGORY: Implementation & Rollout]
+Q: What do you need from us in the first week?
+A: Week one is discovery only. We need API access details, authentication methods, sample payloads, and a walkthrough of current CX workflows. No production changes are required.
+
+Q: Do we need to set up any new infrastructure on our side?
+A: No. By default, no new infrastructure is required. Private connectivity or dedicated environments are optional and can be handled in parallel if needed.
+
+Q: How many APIs do we actually need to integrate?
+A: Most implementations require 3–5 APIs: customer data, ticket creation and updates, agent or user sync, and optional analytics or enrichment APIs.
+
+Q: What if some of our systems don’t expose APIs?
+A: File-based ingestion, database connectors, or middleware integrations are supported. Modern APIs are not a hard requirement.
+
+Q: How do we test integrations without impacting production?
+A: All integrations are tested in sandbox environments using mock traffic. No production writes occur until explicit sign-off.
+
+Q: Can we go live without enabling automation?
+A: Yes. The platform supports assist-only mode where AI provides recommendations but does not execute actions. Automation can be phased in later.
+
+Q: How much training does the AI need before it’s usable?
+A: Pre-trained models work immediately. Accuracy improves after ingesting historical tickets and knowledge bases. Usable results are typically seen within a few weeks.
+
+Q: What happens if our data quality is poor?
+A: The system applies confidence thresholds and abstains from responding when data is unreliable. Data quality improvements are handled incrementally.
+
+Q: How do we ensure AI doesn’t slow down response times?
+A: AI inference has strict latency budgets. If thresholds are exceeded, the system bypasses AI automatically.
+
+Q: Can we roll back changes if something goes wrong?
+A: Yes. All features are deployed behind configuration flags and can be rolled back instantly without redeployment.
+
+[CATEGORY: Architecture & Scale]
+Q: How do you guarantee tenant isolation at the data and compute layer?
+A: Logical isolation is used by default with tenant-scoped schemas. Physical isolation with separate VPCs is supported for regulated or large enterprises.
+
+Q: What is the blast radius if one tenant causes a runaway workload?
+A: Resource quotas are enforced per tenant, auto-scaling has upper bounds, and service-level circuit breakers ensure failures remain tenant-contained.
+
+Q: Is the system event-driven or request-response?
+A: The architecture is hybrid. User-facing actions use synchronous APIs, while AI inference, routing, and analytics run asynchronously through event-driven processing.
+
+Q: What happens if an event consumer lags or fails?
+A: Events are persisted with offsets. Consumers are idempotent, retries use exponential backoff, and dead-letter queues support recovery without data loss.
+
+Q: How do you avoid race conditions in multi-channel interactions?
+A: A centralized conversation state store, versioned updates, and optimistic locking prevent conflicting assignments and automations.
+
+Q: What is your P99 latency for AI-assisted workflows?
+A: AI paths are pre-warmed, embeddings are cached for frequent intents, and strict latency budgets are enforced. If AI exceeds SLA, deterministic fallbacks are used.
+
+[CATEGORY: Integration & Security]
+Q: How do you handle schema drift when CRM fields change?
+A: Field mappings are configuration-driven, schema validation runs continuously, and breaking changes trigger alerts before runtime failures.
+
+Q: Can you handle bi-directional updates without infinite loops?
+A: Yes. Updates carry source identifiers and version stamps to prevent echo loops and conflicting writes.
+
+Q: How do you map identities across multiple systems?
+A: A canonical identity layer maps external IDs via reference tables and supports SSO, OAuth, and SAML. Identity resolution happens once and is reused across systems.
+
+Q: Can we enforce our internal RBAC model?
+A: Yes. RBAC is policy-driven, supports attribute-based access control, and syncs with enterprise IAM systems.
+
+Q: How do you secure webhooks at scale?
+A: Webhooks use signed payloads, timestamp validation, replay attack prevention, and idempotent processing with audit logs.
+
+[CATEGORY: AI Safety & Governance]
+Q: Are you using a single LLM or multiple models?
+A: Multiple specialized models are used for intent classification, entity extraction, and response generation, orchestrated through a model router.
+
+Q: How do you prevent prompt injection attacks?
+A: User input is sanitized and segmented, system instructions are isolated from user context, and output guardrails are enforced.
+
+Q: How do you ensure AI responses are grounded in enterprise data?
+A: Retrieval-augmented generation (RAG) is used with strict confidence thresholds. If grounding fails, the AI refuses to answer.
+
+Q: What happens when enterprise data is stale or conflicting?
+A: Sources are confidence-scored, priority rules are applied, and human-in-the-loop escalation is triggered. The AI does not guess.
+
+Q: Can we audit why the AI made a recommendation?
+A: Yes. Input context, retrieved documents, and decision traces are logged for auditability.
+
+Q: How do you control AI inference costs?
+A: Intent triaging routes queries to cheaper models first, frequent responses are cached, and rate limits are enforced so AI is only used where it adds value.
