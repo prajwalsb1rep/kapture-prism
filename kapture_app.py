@@ -54,31 +54,6 @@ st.markdown("""
         text-transform: uppercase;
     }
 
-    /* --- PROBLEM STATEMENT BOX (FIXED COLOR) --- */
-    .business-case-box {
-        background-color: #fff3e0; /* Soft Orange */
-        border-left: 5px solid #ff9800;
-        padding: 20px;
-        border-radius: 8px;
-        margin-bottom: 30px;
-        font-size: 0.95rem;
-        line-height: 1.5;
-        animation: slideUpFade 1s ease-out;
-    }
-    
-    /* FORCE TEXT COLOR TO BLACK/DARK GREY */
-    .business-case-box, .business-case-box div, .business-case-box strong {
-        color: #263238 !important; /* Dark Slate Grey - Highly Visible */
-    }
-
-    .case-title {
-        font-weight: 800;
-        color: #e65100 !important; /* Darker Orange for Title */
-        margin-bottom: 8px;
-        text-transform: uppercase;
-        font-size: 0.85rem;
-    }
-
     /* --- INPUT BAR --- */
     .stTextInput > div > div > input {
         border-radius: 50px;
@@ -216,15 +191,23 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
-# THE BUSINESS CASE (Fixed Color)
+# THE BUSINESS CASE (NUCLEAR OPTION: INLINE STYLES)
 with st.expander("ℹ️ Why this tool exists (Problem & Solution)"):
     st.markdown("""
-    <div class="business-case-box">
-        <div class="case-title">THE PROBLEM: The "Technical Feasibility" Bottleneck</div>
-        In enterprise sales, deal velocity stalls when commercial teams lack the architectural knowledge to answer specific technical queries (e.g., API limits, SOC2 compliance). This triggers a "Check-and-Return" loop, adding 3-5 days of latency while waiting for Solution Engineers to respond to routine Tier-1 questions.
+    <div style="background-color: #fff3e0; border-left: 5px solid #ff9800; padding: 20px; border-radius: 8px; margin-bottom: 30px; font-size: 0.95rem; line-height: 1.5; color: #000000 !important;">
+        <div style="font-weight: 800; color: #e65100 !important; margin-bottom: 8px; text-transform: uppercase; font-size: 0.85rem;">
+            THE PROBLEM: The "Technical Feasibility" Bottleneck
+        </div>
+        <span style="color: #000000 !important;">
+            In enterprise sales, deal velocity stalls when commercial teams lack the architectural knowledge to answer specific technical queries (e.g., API limits, SOC2 compliance). This triggers a "Check-and-Return" loop, adding 3-5 days of latency while waiting for Solution Engineers to respond to routine Tier-1 questions.
+        </span>
         <br><br>
-        <div class="case-title">THE SOLUTION: Automated Solutioning Intelligence</div>
-        <strong>Kapture Prism</strong> is a deterministic retrieval engine that decouples technical verification from engineering availability. By instantly retrieving verified specs from the engineering knowledge base, it empowers Sales Reps to handle technical objections in real-time. This reduces time-to-answer from days to milliseconds and preserves Solution Engineering capacity for high-value custom implementations.
+        <div style="font-weight: 800; color: #e65100 !important; margin-bottom: 8px; text-transform: uppercase; font-size: 0.85rem;">
+            THE SOLUTION: Automated Solutioning Intelligence
+        </div>
+        <span style="color: #000000 !important;">
+            <strong>Kapture Prism</strong> is a deterministic retrieval engine that decouples technical verification from engineering availability. By instantly retrieving verified specs from the engineering knowledge base, it empowers Sales Reps to handle technical objections in real-time. This reduces time-to-answer from days to milliseconds and preserves Solution Engineering capacity for high-value custom implementations.
+        </span>
     </div>
     """, unsafe_allow_html=True)
 
