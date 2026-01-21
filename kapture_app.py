@@ -10,27 +10,51 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# --- 2. ULTRA-PREMIUM CSS ---
+# --- 2. THEME-LOCKED CSS ---
 st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
 
-    /* Global Background */
-    .stApp {
-        background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-        font-family: 'Inter', sans-serif;
+    /* --- FORCE LIGHT MODE VARIABLES (The Fix) --- */
+    :root {
+        --primary-color: #d32f2f;
+        --background-color: #ffffff;
+        --secondary-background-color: #f0f2f6;
+        --text-color: #262730;
+        --font: "Inter", sans-serif;
     }
     
+    /* Force all text to be dark, overriding Dark Mode settings */
+    html, body, .stApp {
+        color: #262730 !important;
+        background-color: #ffffff !important;
+        font-family: 'Inter', sans-serif !important;
+    }
+
+    /* Fix Input Box Text Color */
+    .stTextInput input {
+        color: #262730 !important;
+        caret-color: #d32f2f; /* Red typing cursor */
+    }
+    
+    /* Fix Placeholder Text */
+    ::placeholder {
+        color: #b0bec5 !important;
+        opacity: 1 !important;
+    }
+
+    /* Hide Streamlit Interface Clutter */
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
     header {visibility: hidden;}
 
+    /* --- ANIMATIONS --- */
     @keyframes slideUpFade {
         0% { opacity: 0; transform: translateY(30px) scale(0.98); }
         100% { opacity: 1; transform: translateY(0) scale(1); }
     }
 
-    /* --- HEADER STYLING --- */
+    /* --- HEADER --- */
     .header-container {
         text-align: center;
         padding-top: 40px;
@@ -40,42 +64,40 @@ st.markdown("""
     .header-title {
         font-size: 3.5rem;
         font-weight: 800;
-        color: #d32f2f;
+        color: #d32f2f !important;
         letter-spacing: -2px;
         line-height: 1.1;
     }
-    .header-prism { color: #263238; }
+    .header-prism { color: #263238 !important; }
     .header-subtitle {
         font-size: 1.1rem;
-        color: #90a4ae;
+        color: #90a4ae !important;
         font-weight: 500;
         margin-top: 10px;
         letter-spacing: 0.5px;
         text-transform: uppercase;
     }
 
-    /* --- INPUT BAR --- */
+    /* --- INPUT BAR CONTAINER --- */
     .stTextInput > div > div > input {
         border-radius: 50px;
         border: 2px solid #eceff1;
-        background-color: #ffffff;
+        background-color: #ffffff !important; /* Force White Background */
         padding: 22px 30px;
         font-size: 1.2rem;
-        color: #263238; /* Dark Text */
         box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.08);
         transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
     .stTextInput > div > div > input:focus {
         border-color: #d32f2f;
-        background-color: #fff;
+        background-color: #ffffff !important;
         outline: none;
         box-shadow: 0 4px 25px rgba(211, 47, 47, 0.15);
-        color: #000000;
     }
 
     /* --- ANSWER CARD --- */
     .answer-card {
-        background: #ffffff;
+        background: #ffffff !important;
         border-radius: 24px;
         padding: 40px;
         margin-top: 40px;
@@ -99,7 +121,7 @@ st.markdown("""
         font-weight: 700;
         letter-spacing: 1.5px;
         text-transform: uppercase;
-        color: #d32f2f;
+        color: #d32f2f !important;
         margin-bottom: 15px;
         display: block;
         opacity: 0.8;
@@ -107,7 +129,7 @@ st.markdown("""
     .card-body {
         font-size: 1.35rem;
         line-height: 1.6;
-        color: #1c262b;
+        color: #1c262b !important; /* Force Black Text */
         font-weight: 500;
     }
 
@@ -118,7 +140,7 @@ st.markdown("""
         padding-bottom: 30px;
         font-size: 1.8rem;
         font-weight: 900; 
-        color: #fbc02d;
+        color: #fbc02d !important;
         text-shadow: 2px 2px 0px rgba(0,0,0,0.05);
         letter-spacing: -0.5px;
         animation: slideUpFade 1.2s ease-out;
@@ -191,21 +213,21 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
-# THE BUSINESS CASE (NUCLEAR OPTION: INLINE STYLES)
+# THE BUSINESS CASE (FORCED BLACK TEXT)
 with st.expander("ℹ️ Why this tool exists (Problem & Solution)"):
     st.markdown("""
-    <div style="background-color: #fff3e0; border-left: 5px solid #ff9800; padding: 20px; border-radius: 8px; margin-bottom: 30px; font-size: 0.95rem; line-height: 1.5; color: #000000 !important;">
+    <div style="background-color: #fff3e0; border-left: 5px solid #ff9800; padding: 20px; border-radius: 8px; margin-bottom: 30px; font-size: 0.95rem; line-height: 1.5; color: #262730 !important;">
         <div style="font-weight: 800; color: #e65100 !important; margin-bottom: 8px; text-transform: uppercase; font-size: 0.85rem;">
             THE PROBLEM: The "Technical Feasibility" Bottleneck
         </div>
-        <span style="color: #000000 !important;">
+        <span style="color: #262730 !important;">
             In enterprise sales, deal velocity stalls when commercial teams lack the architectural knowledge to answer specific technical queries (e.g., API limits, SOC2 compliance). This triggers a "Check-and-Return" loop, adding 3-5 days of latency while waiting for Solution Engineers to respond to routine Tier-1 questions.
         </span>
         <br><br>
         <div style="font-weight: 800; color: #e65100 !important; margin-bottom: 8px; text-transform: uppercase; font-size: 0.85rem;">
             THE SOLUTION: Automated Solutioning Intelligence
         </div>
-        <span style="color: #000000 !important;">
+        <span style="color: #262730 !important;">
             <strong>Kapture Prism</strong> is a deterministic retrieval engine that decouples technical verification from engineering availability. By instantly retrieving verified specs from the engineering knowledge base, it empowers Sales Reps to handle technical objections in real-time. This reduces time-to-answer from days to milliseconds and preserves Solution Engineering capacity for high-value custom implementations.
         </span>
     </div>
