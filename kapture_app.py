@@ -15,6 +15,7 @@ st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
 
+    /* Global Background */
     .stApp {
         background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
         font-family: 'Inter', sans-serif;
@@ -53,21 +54,26 @@ st.markdown("""
         text-transform: uppercase;
     }
 
-    /* --- PROBLEM STATEMENT BOX --- */
+    /* --- PROBLEM STATEMENT BOX (FIXED COLOR) --- */
     .business-case-box {
-        background-color: #fff3e0; /* Soft Orange/Gold tint */
+        background-color: #fff3e0; /* Soft Orange */
         border-left: 5px solid #ff9800;
         padding: 20px;
         border-radius: 8px;
         margin-bottom: 30px;
         font-size: 0.95rem;
-        color: #455a64;
         line-height: 1.5;
         animation: slideUpFade 1s ease-out;
     }
+    
+    /* FORCE TEXT COLOR TO BLACK/DARK GREY */
+    .business-case-box, .business-case-box div, .business-case-box strong {
+        color: #263238 !important; /* Dark Slate Grey - Highly Visible */
+    }
+
     .case-title {
-        font-weight: 700;
-        color: #e65100;
+        font-weight: 800;
+        color: #e65100 !important; /* Darker Orange for Title */
         margin-bottom: 8px;
         text-transform: uppercase;
         font-size: 0.85rem;
@@ -76,11 +82,11 @@ st.markdown("""
     /* --- INPUT BAR --- */
     .stTextInput > div > div > input {
         border-radius: 50px;
-        border: 2px solid transparent;
+        border: 2px solid #eceff1;
         background-color: #ffffff;
         padding: 22px 30px;
         font-size: 1.2rem;
-        color: #37474f;
+        color: #263238; /* Dark Text */
         box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.08);
         transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
@@ -89,6 +95,7 @@ st.markdown("""
         background-color: #fff;
         outline: none;
         box-shadow: 0 4px 25px rgba(211, 47, 47, 0.15);
+        color: #000000;
     }
 
     /* --- ANSWER CARD --- */
@@ -209,7 +216,7 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
-# THE BUSINESS CASE (New Section)
+# THE BUSINESS CASE (Fixed Color)
 with st.expander("ℹ️ Why this tool exists (Problem & Solution)"):
     st.markdown("""
     <div class="business-case-box">
